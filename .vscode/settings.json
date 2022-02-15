@@ -1,0 +1,10 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/media/adampapp/2TBHDD/C/rogue_like",
+            "binaryPath": "/media/adampapp/2TBHDD/C/rogue_like/rogue_like",
+            "binaryArgs": []
+        }
+    ],
+    "C_Cpp.errorSquiggles": "Disabled"
+}
