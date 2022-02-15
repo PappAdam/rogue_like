@@ -20,7 +20,7 @@ double deltaTime;
 
 mouse mouse_;
 
-const unsigned int FPS = 500;
+const unsigned int timePerFrame = 1000 / 800;
 
 bool run = true;
 
@@ -101,6 +101,8 @@ void runGame() {
 
     while (run) {
         frameStart = SDL_GetTicks();
+        
+        frameTime = frameEnd - frameStart;
 
         // Game
 
@@ -108,13 +110,17 @@ void runGame() {
         eventHandler();
         moveCam(&mainCamera, mouse_, win_width, win_height, deltaTime);
 
-
         // Game
 
-        frameEnd = SDL_GetTicks();
+        
         frameTime = frameEnd - frameStart;
 
-        deltaTime = frameTime / 1;
+        if (frameTime < timePerFrame) {
+            SDL_Delay(timePerFrame - frameTime);
+        }
+
+        frameStart = frameEnd;
+        frameEnd = SDL_GetTicks();
     }
 
     Close_();

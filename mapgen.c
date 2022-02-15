@@ -222,8 +222,8 @@ void drawMap(SDL_Renderer *renderer, camera cam){
             }
 
         if (render) {
-            dstR.x = j*dstR.h + (1920-mSize*64)/2 + cam.xoffset;
-            dstR.y = i*dstR.w + (1080-mSize*64)/2 + cam.yoffset;
+            dstR.x = j*dstR.h + (1920-mSize*64)/2 + ((int)cam.xoffset);
+            dstR.y = i*dstR.w + (1080-mSize*64)/2 + ((int)cam.yoffset);
             SDL_RenderCopy(renderer, map_texture, &srcR, &dstR);
         }
 
