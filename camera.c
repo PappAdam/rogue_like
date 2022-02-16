@@ -1,20 +1,22 @@
 #include "engine.h"
 
 typedef struct _camera {
-    int xoffset, yoffset;
+    float xoffset, yoffset;
     int speed;
 } camera;
 
-void moveCam(camera *cam, mouse mouse_, int maxX, int maxY, double deltaTime) {
+void moveCam(camera *cam, mouse mouse_, int maxX, int maxY, float deltaTime) {
     if (mouse_.x >= maxX-20) {
-        cam->xoffset -= cam->speed;
+        cam->xoffset -= cam->speed*deltaTime;
     } else if (mouse_.x <= 20) {
-        cam->xoffset += cam->speed;
+        cam->xoffset += cam->speed*deltaTime;
     }
 
     if (mouse_.y >= maxY-20) {
-        cam->yoffset -= cam->speed;
+        cam->yoffset -= cam->speed*deltaTime;
     } else if (mouse_.y <= 20) {
-        cam->yoffset += cam->speed;
+        cam->yoffset += cam->speed*deltaTime;
     }
+
+    // printf("%lf, %lf, %lf\n", cam->xoffset, cam->yoffset, deltaTime);
 }

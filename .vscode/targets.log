@@ -6,8 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
- 
-# Make data base, printed on Tue Feb 15 19:57:43 2022
+# Make data base, printed on Wed Feb 16 17:13:30 2022
 
 # Variables
 
@@ -68,7 +67,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # makefile (from 'Makefile', line 1)
-OBJS = engine.c main.c game.c mapgen.c camera.c
+OBJS = engine.c main.c game.c mapgen.c camera.c renderer.c
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -86,7 +85,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 XCURSOR_THEME = Layan-white-cursors
 # environment
-SESSION_MANAGER = local/pop-os:@/tmp/.ICE-unix/1700,unix/pop-os:/tmp/.ICE-unix/1700
+SESSION_MANAGER = local/pop-os:@/tmp/.ICE-unix/1644,unix/pop-os:/tmp/.ICE-unix/1644
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -110,7 +109,7 @@ LS_COLORS =
 # environment
 XDG_SESSION_DESKTOP = KDE
 # environment
-SSH_AUTH_SOCK = /tmp/ssh-z04mn1dt35MA/agent.1384
+SSH_AUTH_SOCK = /tmp/ssh-vxbad2ofSCOw/agent.1384
 # automatic
 %F = $(notdir $%)
 # environment
@@ -128,7 +127,7 @@ KDE_SESSION_VERSION = 5
 # environment
 XDG_SEAT = seat0
 # environment
-SSH_AGENT_PID = 1517
+SSH_AGENT_PID = 1535
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = KDE
 # makefile (from 'Makefile', line 7)
@@ -182,7 +181,7 @@ SHLVL = 0
 # makefile (from 'Makefile', line 3)
 CC = gcc
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-92cfa416-ef09-40c4-a6f2-32dc6a7d9550.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-71b24089-1ce0-463c-96c6-c645899da30c.sock
 # environment
 XDG_SESSION_ID = 1
 # environment
@@ -256,7 +255,7 @@ OBJ_NAME = rogue_like
 # environment
 LANG = C
 # environment
-VSCODE_PID = 60201
+VSCODE_PID = 27500
 # environment
 KDE_SESSION_UID = 1000
 # variable set hash-table stats:
@@ -268,25 +267,25 @@ KDE_SESSION_UID = 1000
 
 # Directories
 
-# . (device 2049, inode 121110590): 17 files, no impossibilities.
+# . (device 2049, inode 121110590): 20 files, no impossibilities.
 
-# 17 files, no impossibilities in 1 directories.
+# 20 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 # No implicit rules.
 
- 
 # Files
 
 # Not a target:
 game.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-15 19:56:58.836657133
+ 
+#  Last modified 2022-02-16 17:02:06
 #  File has been updated.
 #  Successfully updated.
 
-all: engine.c main.c game.c mapgen.c camera.c
+all: engine.c main.c game.c mapgen.c camera.c renderer.c
 #  Command line target.
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
@@ -300,15 +299,15 @@ all: engine.c main.c game.c mapgen.c camera.c
 # automatic
 # * := 
 # automatic
-# + := engine.c main.c game.c mapgen.c camera.c
+# + := engine.c main.c game.c mapgen.c camera.c renderer.c
 # automatic
 # | := 
 # automatic
 # < := engine.c
 # automatic
-# ^ := engine.c main.c game.c mapgen.c camera.c
+# ^ := engine.c main.c game.c mapgen.c camera.c renderer.c
 # automatic
-# ? := engine.c main.c game.c mapgen.c camera.c
+# ? := engine.c main.c game.c mapgen.c camera.c renderer.c
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=2/17=12%
 #  recipe to execute (from 'Makefile', line 12):
@@ -318,7 +317,7 @@ all: engine.c main.c game.c mapgen.c camera.c
 # Not a target:
 engine.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-15 19:43:17.412161402
+#  Last modified 2022-02-15 19:43:17
 #  File has been updated.
 #  Successfully updated.
 
@@ -326,6 +325,13 @@ engine.c:
 main.c:
 #  Implicit rule search has been done.
 #  Last modified 2022-02-07 17:34:21
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+renderer.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-16 16:19:05
 #  File has been updated.
 #  Successfully updated.
 
@@ -338,7 +344,7 @@ main.c:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-15 19:57:40.557092973
+#  Last modified 2022-02-16 16:19:30
 #  File has been updated.
 #  Successfully updated.
 
@@ -351,31 +357,31 @@ Makefile:
 # Not a target:
 camera.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-15 19:55:11.675522336
+#  Last modified 2022-02-16 15:45:25
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 mapgen.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-15 19:41:05.262950984
+#  Last modified 2022-02-16 17:07:27
 #  File has been updated.
 #  Successfully updated.
 
 # files hash-table stats:
-# Load=9/1024=1%, Rehash=0, Collisions=1/26=4%
+# Load=10/1024=1%, Rehash=0, Collisions=1/28=4%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 22 / storage = 198 B / avg = 9 B
-# current buf: size = 8162 B / used = 198 B / count = 22 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 25 / storage = 225 B / avg = 9 B
+# current buf: size = 8162 B / used = 225 B / count = 25 / avg = 9 B
 
-# strcache performance: lookups = 34 / hit rate = 35%
+# strcache performance: lookups = 38 / hit rate = 34%
 # hash-table stats:
-# Load=22/8192=0%, Rehash=0, Collisions=1/34=3%
-# Finished Make data base on Tue Feb 15 19:57:43 2022
+# Load=25/8192=0%, Rehash=0, Collisions=1/38=3%
+# Finished Make data base on Wed Feb 16 17:13:30 2022
 
  

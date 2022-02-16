@@ -16,14 +16,12 @@
 SDL_Window *window = NULL;
 SDL_Renderer *renderer = NULL;
 camera mainCamera = {.speed = 3, .xoffset = 0, .yoffset = 0};
-double deltaTime;
-
 mouse mouse_;
 
-const unsigned int timePerFrame = 1000 / 800;
+const unsigned int timePerFrame = 1000 / 240;
+const float deltaTimeRatio = 1000 / 500;
 
 bool run = true;
-
 
 //========================================================================== INIT ============================================================================//
 
@@ -47,6 +45,8 @@ void Close_() {
 
     SDL_DestroyRenderer( renderer);
 
+    SDL_DestroyTexture(map_texture);
+
     SDL_Quit();
     IMG_Quit();
 }
@@ -54,26 +54,26 @@ void Close_() {
 //=========================================================================== EVENT HANDLER ==================================================================//
 
 
-void eventHandler() {
-    SDL_Event event;
-    SDL_PollEvent(&event);
-    switch(event.type){
-        case SDL_QUIT:
-            run = false;
-            break;
-        case SDL_KEYDOWN:
-            switch(event.key.keysym.sym) {
-                case SDLK_ESCAPE:
-                    run = false;
-                    break;
-            }
+void eventHandler(SDL_Event event) {
+    while (SDL_PollEvent(&event)) {
+        switch(event.type){
+            case SDL_QUIT:
+                run = false;
+                break;
+            case SDL_KEYDOWN:
+                switch(event.key.keysym.sym) {
+                    case SDLK_ESCAPE:
+                        run = false;
+                        break;
+                }
 
-        case SDL_MOUSEMOTION:
-            mouse_.x = event.motion.x;
-            mouse_.y = event.motion.y;
+            case SDL_MOUSEMOTION:
+                mouse_.x = event.motion.x;
+                mouse_.y = event.motion.y;
 
-        default:
-            break;
+            default:
+                break;
+        }
     }
 }
 
@@ -95,32 +95,36 @@ void runGame() {
     init();
     loadMap(renderer);
 
+    SDL_Event event;
+
     Uint32 frameStart;
     Uint32 frameEnd;
     Uint32 frameTime;
 
+    float deltaTime;
+
+
     while (run) {
         frameStart = SDL_GetTicks();
-        
-        frameTime = frameEnd - frameStart;
 
         // Game
 
         gameRenderer();
-        eventHandler();
+        eventHandler(event);
         moveCam(&mainCamera, mouse_, win_width, win_height, deltaTime);
+
 
         // Game
 
-        
+        frameEnd = SDL_GetTicks();
         frameTime = frameEnd - frameStart;
 
         if (frameTime < timePerFrame) {
             SDL_Delay(timePerFrame - frameTime);
+            frameTime = timePerFrame;
         }
 
-        frameStart = frameEnd;
-        frameEnd = SDL_GetTicks();
+        deltaTime = (float)(frameTime / deltaTimeRatio);
     }
 
     Close_();

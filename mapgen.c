@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define mSize 30
+#define mSize 120
 
 typedef struct block_ {
     enum type {
@@ -66,7 +66,31 @@ void connectRoom(room srcRoom, room dstRoom) {
 }
 
 
-void generateMap() {
+void generateMap(room prevRoom, int roomCount) {
+    int rX;
+    int rY;
+    if ((prevRoom.x + 5 < mSize-10 && prevRoom.x - 5 > 10 && prevRoom.y + 5 < mSize-10 && prevRoom.y - 5 > 10) && roomCount > 0) {
+        rX = rand() % 3 - 1;
+        if (rX == 0) {
+            rY = (rand()%2)*2-1;
+        }
+        else {
+            rY = 0;
+        }
+
+        room newRoom = {.width = rand() % 3 + 7, .height = rand() % 3 + 7};
+        newRoom.x = (rX < 0) ? prevRoom.x - 5 - newRoom.width : prevRoom.x + (5 + prevRoom.width)*rX;
+        newRoom.y = (rY < 0) ? prevRoom.y - 5 - newRoom.height : prevRoom.y+ (5 + prevRoom.height)*rY;
+        createRoom(newRoom);
+        if (rX < 0 || rY < 0) {
+            connectRoom(newRoom, prevRoom);
+        }
+        else {
+            connectRoom(prevRoom, newRoom);
+        }
+        roomCount--;
+        return generateMap(newRoom, roomCount);
+    }
 
 }
 
@@ -140,14 +164,11 @@ void getBlockType() {
 void loadMap(SDL_Renderer *renderer){
     srand(time(NULL));
 
-    room rm0 = {5, 5, 10, 10};
-    room rm1 = {8, 5, 20, 10};
-    room rm2 = {6, 5, 10, 17};
+    room rm0 = {5, 5, mSize/2, mSize/2};
     createRoom(rm0);
-    createRoom(rm1);
-    createRoom(rm2);
-    connectRoom(rm0, rm1);
-    connectRoom(rm0, rm2);
+
+    generateMap(rm0, 20);
+
 
     getBlockType();
 
@@ -222,8 +243,8 @@ void drawMap(SDL_Renderer *renderer, camera cam){
             }
 
         if (render) {
-            dstR.x = j*dstR.h + (1920-mSize*64)/2 + ((int)cam.xoffset);
-            dstR.y = i*dstR.w + (1080-mSize*64)/2 + ((int)cam.yoffset);
+            dstR.x = j*dstR.h + (int)cam.xoffset;
+            dstR.y = i*dstR.w + (int)cam.yoffset;
             SDL_RenderCopy(renderer, map_texture, &srcR, &dstR);
         }
 

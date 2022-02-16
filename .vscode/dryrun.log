@@ -1,6 +1,6 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/media/adampapp/2TBHDD/C/rogue_like'
-gcc engine.c main.c game.c mapgen.c camera.c -w -lSDL2 -lSDL2_image -o rogue_like
+gcc engine.c main.c game.c mapgen.c camera.c renderer.c -w -lSDL2 -lSDL2_image -o rogue_like
 ./rogue_like
 make: Leaving directory '/media/adampapp/2TBHDD/C/rogue_like'
  
